@@ -45,13 +45,41 @@ namespace CustomList
 		//member methods
 		public void Add(T item)
 		{
-			
-			
+
+			if (IsOverCapacity() == true)
+			{
+				CreateNewPrivateArray();
+				arrayOfData[count] = item;
+				count++;
+			}
+			else
+			{
 			arrayOfData[count] = item;
 			count++;
-
+			}
 
 		}
+		private bool IsOverCapacity()
+		{
+			if (count >= arrayCapacity)
+			{ return true; }
+			else
+			{ return false; }
+		}
+		private void CreateNewPrivateArray()
+		{
+
+			T[] temporaryArray = new T[arrayCapacity * 2];
+			for (int i = 0; i < arrayCapacity; i++)
+			{
+				temporaryArray[i] = arrayOfData[i];
+				
+			}
+			
+			arrayOfData = temporaryArray;
+			arrayCapacity *= 2;
+		}
+
 
 
 

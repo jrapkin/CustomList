@@ -92,7 +92,7 @@ namespace CustomListTestCases
 			//Assert
 			Assert.AreEqual(expected, aCustomList.Capacity);
 		}
-	/*	[TestMethod]
+		[TestMethod]
 		public void Add_SixValues_CheckCapacityIsEight()
 		{
 			//arrange
@@ -118,38 +118,38 @@ namespace CustomListTestCases
 			Assert.AreEqual(expected, aCustomList.Capacity);
 		}
 
-		[TestMethod]
-		public void add_CheckIfExceedingCapacity_CreateNewArray()
-		{
+		//[testmethod]
+		//public void add_checkifexceedingcapacity_createnewarray()
+		//{
 
-		}
-		//tests to make sure that the array and its elements at each index are properly copied to a new, larger array
-		[TestMethod]
-		public void Add_ElementsOverDefaultArraySize_CopyArrayToNewArray()
-		{
-			//arrange
-			CustomList<int> aCustomList = new CustomList<int>();
-			int expected = 5;
-			int elementOne = 1;
-			int elementTwo = 2;
-			int elementThree = 3;
-			int elementFour = 4;
-			int elementFive = 5;
-			//act
-			aCustomList.Add(elementOne);
-			aCustomList.Add(elementTwo);
-			aCustomList.Add(elementThree);
-			aCustomList.Add(elementFour);
-			aCustomList.Add(elementFive);
+		//}
+		////tests to make sure that the array and its elements at each index are properly copied to a new, larger array
+		//[testmethod]
+		//public void add_elementsoverdefaultarraysize_copyarraytonewarray()
+		//{
+		//	//arrange
+		//	customlist<int> acustomlist = new customlist<int>();
+		//	int expected = 5;
+		//	int elementone = 1;
+		//	int elementtwo = 2;
+		//	int elementthree = 3;
+		//	int elementfour = 4;
+		//	int elementfive = 5;
+		//	//act
+		//	acustomlist.add(elementone);
+		//	acustomlist.add(elementtwo);
+		//	acustomlist.add(elementthree);
+		//	acustomlist.add(elementfour);
+		//	acustomlist.add(elementfive);
 
-			//assert
-			Assert.AreEqual(expected, aCustomList[4]);
+		//	//assert
+		//	assert.areequal(expected, acustomlist[4]);
 
-		}
+		//}
 
 
 
-*/
+
 
 
 	}

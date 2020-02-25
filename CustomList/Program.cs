@@ -13,6 +13,10 @@ namespace CustomList
 			CustomList<int> testList = new CustomList<int>();
 			testList.Add(5);
 			testList.Add(7);
+			testList.Add(7);
+			testList.Add(7);
+			testList.Add(7);
+			testList.Add(7);
 
 		}
 	}
