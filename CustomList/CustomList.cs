@@ -48,14 +48,14 @@ namespace CustomList
 
 			if (IsOverCapacity() == true)
 			{
-				CreateNewPrivateArray();
-				arrayOfData[count] = item;
-				count++;
+				CreateNewArray();
+				AddItemToArray(item);
+				IncrementCount();
 			}
 			else
 			{
-			arrayOfData[count] = item;
-			count++;
+				AddItemToArray(item);
+				IncrementCount();
 			}
 
 		}
@@ -66,7 +66,7 @@ namespace CustomList
 			else
 			{ return false; }
 		}
-		private void CreateNewPrivateArray()
+		private void CreateNewArray()
 		{
 
 			T[] temporaryArray = new T[arrayCapacity * 2];
@@ -80,6 +80,15 @@ namespace CustomList
 			arrayCapacity *= 2;
 		}
 
+		private void AddItemToArray(T item)
+		{
+			arrayOfData[count] = item;
+
+		}
+		private void IncrementCount()
+		{
+			count++;
+		}
 
 
 
