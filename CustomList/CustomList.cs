@@ -11,7 +11,6 @@ namespace CustomList
 		//member variables
 		int count;
 		int arrayCapacity;
-		
 		private T[] arrayOfData;
 		public T this [int index]
 		{
