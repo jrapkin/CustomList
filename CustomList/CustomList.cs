@@ -9,14 +9,33 @@ namespace CustomList
 	public class CustomList<T>
 	{
 		//member variables
-		int count;
-		int arrayCapacity;
+		private int count;
+		private int arrayCapacity;
 		private T[] arrayOfData;
-		public T this [int index]
+		public T this[int index]
 		{
-			get { return arrayOfData[index]; }
-			set { arrayOfData[index] = value; }
+			get
+			{
+				if (index >= count) { throw new ArgumentOutOfRangeException(); }
+
+
+
+				else { return arrayOfData[index]; }
+			}
+			set
+			{
+				if (index >= count)
+				{
+					throw new ArgumentOutOfRangeException();
+				}
+				else
+				{
+					arrayOfData[index] = value;
+				}
+			}
 		}
+			
+		
 		public int Length { get { return count; } }
 		public int Count { get { return count; } }
 		public int Capacity
@@ -25,14 +44,7 @@ namespace CustomList
 			{ 
 				return arrayCapacity; 
 			}
-			set
-			{
-				if (count <= arrayCapacity)
-				{
-					arrayCapacity = 4;
-				}
-				
-			}
+
 		}
 		//ctor
 		public CustomList()
@@ -43,22 +55,23 @@ namespace CustomList
 		}
 
 		//member methods
-		public void Add(T item)
+		public void Add(T element)
 		{
 
 			if (IsOverCapacity() == true)
 			{
 				CreateNewArray();
-				AddItemToArray(item);
+				AddItemToArray(element);
 				IncrementCount();
 			}
 			else
 			{
-				AddItemToArray(item);
+				AddItemToArray(element);
 				IncrementCount();
 			}
 
 		}
+		//ADD METHOD FUNCTIONALITY
 		private bool IsOverCapacity()
 		{
 			if (count >= arrayCapacity)
@@ -80,9 +93,9 @@ namespace CustomList
 			arrayCapacity *= 2;
 		}
 
-		private void AddItemToArray(T item)
+		private void AddItemToArray(T element)
 		{
-			arrayOfData[count] = item;
+			arrayOfData[count] = element;
 
 		}
 		private void IncrementCount()
@@ -90,11 +103,48 @@ namespace CustomList
 			count++;
 		}
 
+		//REMOVE METHOD FUNCTIONALITY
+
+		public void Remove(T elementToRemove)
+		{
+			bool elementIsPresent = IsElementPresent(elementToRemove);
+			T assignedElement = FindInstanceOfElement(elementToRemove);
 
 
 
+		}
 
 
+		private bool IsElementPresent(T elementToFind)
+		{
+			for (int i = 0; i < count; i++)
+			{
+
+				if (elementToFind.Equals(arrayOfData[i]))
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
+		private T FindInstanceOfElement(T elementToAssign)
+		{
+
+			for (int i = 0; i < count; i++)
+			{
+				if (elementToAssign.Equals(arrayOfData[i]))
+				{
+					return arrayOfData[i];
+				}
+			}
+			return elementToAssign;
+		}
+
+		//private void CreateNewArray()
+		//{
+		//	if 
+		//}
 
 
 	}

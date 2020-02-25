@@ -24,10 +24,8 @@ namespace CustomListTestCases
 		}
 		//Tests to make sure that the returned default value of the array is of the correct data type
 
-		/// <summary>
-		/// Tests for the Add Method
-		/// </summary>
-		//Tests to make sure an array is created when a new list is created
+
+		//ADD METHOD TESTS
 
 		//Tests to make sure that the list is incrementing the count as new elements get added to the list
 		[TestMethod]
@@ -118,11 +116,7 @@ namespace CustomListTestCases
 			Assert.AreEqual(expected, aCustomList.Capacity);
 		}
 
-		//[testmethod]
-		//public void add_checkifexceedingcapacity_createnewarray()
-		//{
 
-		//}
 		////tests to make sure that the array and its elements at each index are properly copied to a new, larger array
 		//[testmethod]
 		//public void add_elementsoverdefaultarraysize_copyarraytonewarray()
@@ -146,6 +140,131 @@ namespace CustomListTestCases
 		//	assert.areequal(expected, acustomlist[4]);
 
 		//}
+
+		//REMOVE METHOD TESTS
+		[TestMethod]
+		public void Remove_OneValue_DecrementCountOfList()
+		{
+			//arrange
+			CustomList<int> aCustomList = new CustomList<int>();
+			int expected = 1;
+			int removeValue = 1;
+			aCustomList.Add(1);
+			aCustomList.Add(2);
+			//act
+			aCustomList.Remove(removeValue);
+			//assert
+			Assert.AreEqual(expected, aCustomList.Count);
+		}
+		[TestMethod]
+		public void Remove_OneValue_ReturnValueAtIndexZero()
+		{
+			//arrange
+			CustomList<int> aCustomList = new CustomList<int>();
+			int expected = 1;
+			int removeValue = 2;
+			aCustomList.Add(1);
+			aCustomList.Add(2);
+			//act
+			aCustomList.Remove(removeValue);
+			//assert
+			Assert.AreEqual(expected, aCustomList[0]);
+		}
+		[TestMethod]
+		public void Remove_TwoValues_ReturnValueAtIndexZero()
+		{
+			//arrange
+			CustomList<int> aCustomList = new CustomList<int>();
+			int expected = 3;
+			int removeValueOne = 2;
+			int removeValueTwo = 1;
+			aCustomList.Add(1);
+			aCustomList.Add(2);
+			aCustomList.Add(3);
+			//act
+			aCustomList.Remove(removeValueOne);
+			aCustomList.Remove(removeValueTwo);
+			//assert
+			Assert.AreEqual(expected, aCustomList[0]);
+		}
+		[TestMethod]
+		public void Remove_ValueAtIndiceZero_ReturnUpdatedIndex()
+		{
+			//arrange
+			CustomList<int> aCustomList = new CustomList<int>();
+			int expected = 2;
+			int removeValue = 1;
+			aCustomList.Add(1);
+			aCustomList.Add(2);
+			//act
+			aCustomList.Remove(removeValue);
+			//assert
+			Assert.AreEqual(expected, aCustomList[0]);
+		}
+		[TestMethod]
+		public void Remove_ValueAtIndiceThree_ReturnUpdatedIndex()
+		{
+			//arrange
+			CustomList<int> aCustomList = new CustomList<int>();
+			int expected = 3;
+			int removeValue = 4;
+			aCustomList.Add(1);
+			aCustomList.Add(2);
+			aCustomList.Add(3);
+			aCustomList.Add(4);
+			//act
+			aCustomList.Remove(removeValue);
+			//assert
+			Assert.AreEqual(expected, aCustomList[2]);
+		}
+		[TestMethod]
+		public void Remove_ValueAtIndiceFive_ReturnUpdatedIndex()
+		{
+			//arrange
+			CustomList<int> aCustomList = new CustomList<int>();
+			int expected = 7;
+			int removeValue = 6;
+			aCustomList.Add(1);
+			aCustomList.Add(2);
+			aCustomList.Add(3);
+			aCustomList.Add(4);
+			aCustomList.Add(5);
+			aCustomList.Add(6);
+			aCustomList.Add(7);
+			//act
+			aCustomList.Remove(removeValue);
+			//assert
+			Assert.AreEqual(expected, aCustomList[5]);
+		}
+		[TestMethod]
+		public void Remove_OneInstanceOfValue_RemoveFirstInstance()
+		{
+			//arrange
+			CustomList<int> aCustomList = new CustomList<int>();
+			int expected = 2;
+			int removeValue = 1;
+			aCustomList.Add(1);
+			aCustomList.Add(2);
+			aCustomList.Add(1);
+			//act
+			aCustomList.Remove(removeValue);
+			//assert
+			Assert.AreEqual(expected, aCustomList[0]);
+		}
+		[TestMethod]
+		public void Remove_SomethingNotInList_CountStaysTheSame()
+		{
+			//arrange
+			CustomList<int> aCustomList = new CustomList<int>();
+			int expected = 2;
+			int removeValue = 5;
+			aCustomList.Add(1);
+			aCustomList.Add(2);
+			//act
+			aCustomList.Remove(removeValue);
+			//assert
+			Assert.AreEqual(expected, aCustomList.Count);
+		}
 
 
 
