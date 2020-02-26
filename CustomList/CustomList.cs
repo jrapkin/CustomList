@@ -87,6 +87,7 @@ namespace CustomList
 			{
 				temporaryArray[i] = arrayOfData[i];
 				
+				
 			}
 			
 			arrayOfData = temporaryArray;
@@ -107,46 +108,34 @@ namespace CustomList
 
 		public void Remove(T elementToRemove)
 		{
-			bool elementIsPresent = IsElementPresent(elementToRemove);
-			T assignedElement = FindInstanceOfElement(elementToRemove);
-
-
-
+				CreateNewArray(elementToRemove);
+			
 		}
-
-
-		private bool IsElementPresent(T elementToFind)
+		private void CreateNewArray(T assignedElement)
 		{
-			for (int i = 0; i < count; i++)
+			T[] temporaryArray = new T[arrayCapacity];
+			int temporaryCount = count;
+			bool removed = false;
+			for (int i = 0,j=0; i < temporaryCount; i++,j++)
 			{
-
-				if (elementToFind.Equals(arrayOfData[i]))
+				if (assignedElement.Equals(arrayOfData[i]) && !removed)
 				{
-					return true;
+					j--;
+					removed = true;
+					count--;
+					
+				}
+				else
+				{
+					temporaryArray[j] = arrayOfData[i];
+
 				}
 			}
-			return false;
+			
+			arrayOfData = temporaryArray;
+			
+			
 		}
-
-		private T FindInstanceOfElement(T elementToAssign)
-		{
-
-			for (int i = 0; i < count; i++)
-			{
-				if (elementToAssign.Equals(arrayOfData[i]))
-				{
-					return arrayOfData[i];
-				}
-			}
-			return elementToAssign;
-		}
-
-		//private void CreateNewArray()
-		//{
-		//	if 
-		//}
-
-
 	}
 
 	
