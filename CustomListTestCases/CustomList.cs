@@ -338,7 +338,61 @@ namespace CustomListTestCases
 			//assert
 			Assert.AreEqual(expected, result);
 		}
-
+		[TestMethod]
+		public void OperatorOverload_AddTwoLists_ReturnCount()
+		{
+			//arrange
+			CustomList<int> listOfInts = new CustomList<int>();
+			CustomList<int> secondListOfInts = new CustomList<int>();
+			listOfInts.Add(1);
+			listOfInts.Add(3);
+			listOfInts.Add(5);
+			secondListOfInts.Add(2);
+			secondListOfInts.Add(4);
+			secondListOfInts.Add(6);
+			CustomList<int> result;
+			CustomList<int> expected = new CustomList<int>();
+			//act
+			result = listOfInts + secondListOfInts;
+			//assert
+			Assert.AreEqual(expected, result);
+		}
+		[TestMethod]
+		public void OperatorOverload_AddTwoListOfStrings_ReturnCombinedListOfStrings()
+		{
+			CustomList<string> listOfStrings = new CustomList<string>();
+			CustomList<string> secondListOfStrings = new CustomList<string>();
+			listOfStrings.Add("one");
+			listOfStrings.Add("three");
+			listOfStrings.Add("five");
+			secondListOfStrings.Add("two");
+			secondListOfStrings.Add("four");
+			secondListOfStrings.Add("six");
+			CustomList<string> result;
+			CustomList<string> expected = new CustomList<string>();
+			//act
+			result = listOfStrings + secondListOfStrings;
+			//assert
+			Assert.AreEqual(expected, result);
+		}
+		[TestMethod]
+		public void OperatorOverload_AddTwoListOfStrings_Capacity()
+		{
+			CustomList<string> listOfStrings = new CustomList<string>();
+			CustomList<string> secondListOfStrings = new CustomList<string>();
+			listOfStrings.Add("one");
+			listOfStrings.Add("three");
+			listOfStrings.Add("five");
+			secondListOfStrings.Add("two");
+			secondListOfStrings.Add("four");
+			secondListOfStrings.Add("six");
+			CustomList<string> result;
+			CustomList<string> expected = new CustomList<string>();
+			//act
+			result = listOfStrings + secondListOfStrings;
+			//assert
+			Assert.AreEqual(expected, result);
+		}
 		// - OPERATOR TESTS
 
 		// ITERATOR TESTS
