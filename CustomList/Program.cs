@@ -11,19 +11,10 @@ namespace CustomList
 		static void Main(string[] args)
 		{
 			CustomList<int> testList = new CustomList<int>();
-			testList.Add(5);
-			testList.Add(7);
-			testList.Add(1);
-			testList.Add(7);
-			testList.Add(7);
-			testList.Add(7);
-/*			List<int> vs = new List<int>();
-			for (int i = 0; i < 8; i++)
-			{
-				vs.Add(i + 1);
-			}*/
+			testList.Add(4);
+			testList.Add(543);
+			Console.WriteLine(testList[1].ToString());
 
-			testList.Remove(1);
 		}
 	}
 }

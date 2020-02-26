@@ -11,6 +11,7 @@ namespace CustomList
 		//member variables
 		private int count;
 		private int arrayCapacity;
+		
 		private T[] arrayOfData;
 		public T this[int index]
 		{
@@ -49,6 +50,7 @@ namespace CustomList
 		//ctor
 		public CustomList()
 		{
+			count = 0;
 			arrayCapacity = 4;
 			arrayOfData = new T[arrayCapacity];
 			
@@ -60,7 +62,7 @@ namespace CustomList
 
 			if (IsOverCapacity() == true)
 			{
-				CreateNewArray();
+				UpdateArray();
 				AddItemToArray(element);
 				IncrementCount();
 			}
@@ -79,17 +81,14 @@ namespace CustomList
 			else
 			{ return false; }
 		}
-		private void CreateNewArray()
+		private void UpdateArray()
 		{
 
 			T[] temporaryArray = new T[arrayCapacity * 2];
 			for (int i = 0; i < arrayCapacity; i++)
 			{
 				temporaryArray[i] = arrayOfData[i];
-				
-				
 			}
-			
 			arrayOfData = temporaryArray;
 			arrayCapacity *= 2;
 		}
@@ -97,7 +96,6 @@ namespace CustomList
 		private void AddItemToArray(T element)
 		{
 			arrayOfData[count] = element;
-
 		}
 		private void IncrementCount()
 		{
@@ -108,10 +106,9 @@ namespace CustomList
 
 		public void Remove(T elementToRemove)
 		{
-				CreateNewArray(elementToRemove);
-			
+			UpdateArray(elementToRemove);
 		}
-		private void CreateNewArray(T assignedElement)
+		private void UpdateArray(T assignedElement)
 		{
 			T[] temporaryArray = new T[arrayCapacity];
 			int temporaryCount = count;
@@ -123,20 +120,29 @@ namespace CustomList
 					j--;
 					removed = true;
 					count--;
-					
 				}
 				else
 				{
 					temporaryArray[j] = arrayOfData[i];
-
 				}
 			}
-			
 			arrayOfData = temporaryArray;
-			
-			
 		}
+
+		public override string ToString()
+		{
+			StringBuilder newString = new StringBuilder();
+
+			for (int i = 0; i < count; i++)
+			{
+				newString.Append(arrayOfData[i]);
+			}
+			
+			return newString.ToString();
+		}
+
+
 	}
 
-	
+
 }

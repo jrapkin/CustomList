@@ -267,9 +267,84 @@ namespace CustomListTestCases
 		}
 
 
+		//.TOSTRING TESTS
+		[TestMethod]
+		public void ToString_ConvertOneElement_OutputString()
+		{
+			//arrange
+			CustomList<int> aCustomList = new CustomList<int>();
+			string expected = "25";
+			string actual;
+			aCustomList.Add(25);
+			//act
+			actual = aCustomList.ToString();
+			//assert
+			Assert.AreEqual(expected, actual);
+		}
+		[TestMethod]
+		public void ToString_ConvertTwoElements_OutputString()
+		{
+			//arrange
+			CustomList<int> aCustomList = new CustomList<int>();
+			string expected = "2537";
+			string actual;
+			aCustomList.Add(25);
+			aCustomList.Add(37);
+			//act
+			actual = aCustomList.ToString();
+			//assert
+			Assert.AreEqual(expected, actual);
+		}
 
+		[TestMethod]
+		public void ToString_ConvertTwoStrings_OutputStrings()
+		{
+			//arrange
+			CustomList<string> aCustomList = new CustomList<string>();
+			string expected = "Hi There";
+			string actual;
+			aCustomList.Add("Hi ");
+			aCustomList.Add("There");
+			//act
+			actual = aCustomList.ToString();
+			//assert
+			Assert.AreEqual(expected, actual);
+		}
 
+		[TestMethod]
+		public void ToString_ConvertThreeElementsInListOfDoubles_OutputString()
+		{
+			//arrange
+			CustomList<double> aCustomList = new CustomList<double>();
+			string expected = "0.250.120.15";
+			string actual;
+			aCustomList.Add(.25);
+			aCustomList.Add(.12);
+			aCustomList.Add(.15);
+			//act
+			actual = aCustomList.ToString();
+			//assert
+			Assert.AreEqual(expected, actual);
+		}
 
+		[TestMethod]
+		public void ToString_ConvertADoubleElement_OutputString()
+		{
+			//arrange
+			CustomList<double> aCustomList = new CustomList<double>();
+			string expected = "0.25";
+			string actual;
+			aCustomList.Add(.25);
+			//act
+			actual = aCustomList.ToString();
+			//assert
+			Assert.AreEqual(expected, actual);
+		}
+
+		//+OPERATOR TESTS
+
+		[TestMethod]
+		public void 
 
 	}
 }
