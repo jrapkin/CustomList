@@ -117,30 +117,6 @@ namespace CustomListTestCases
 		}
 
 
-		////tests to make sure that the array and its elements at each index are properly copied to a new, larger array
-		//[testmethod]
-		//public void add_elementsoverdefaultarraysize_copyarraytonewarray()
-		//{
-		//	//arrange
-		//	customlist<int> acustomlist = new customlist<int>();
-		//	int expected = 5;
-		//	int elementone = 1;
-		//	int elementtwo = 2;
-		//	int elementthree = 3;
-		//	int elementfour = 4;
-		//	int elementfive = 5;
-		//	//act
-		//	acustomlist.add(elementone);
-		//	acustomlist.add(elementtwo);
-		//	acustomlist.add(elementthree);
-		//	acustomlist.add(elementfour);
-		//	acustomlist.add(elementfive);
-
-		//	//assert
-		//	assert.areequal(expected, acustomlist[4]);
-
-		//}
-
 		//REMOVE METHOD TESTS
 		[TestMethod]
 		public void Remove_OneValue_DecrementCountOfList()
@@ -341,10 +317,104 @@ namespace CustomListTestCases
 			Assert.AreEqual(expected, actual);
 		}
 
-		//+OPERATOR TESTS
+		//+ OPERATOR TESTS
 
 		[TestMethod]
-		public void 
+		public void OperatorOverload_AddTwoLists_ReturnCombinedLists()
+		{
+			//arrange
+			CustomList<int> listOfInts = new CustomList<int>();
+			CustomList<int> secondListOfInts = new CustomList<int>();
+			listOfInts.Add(1);
+			listOfInts.Add(3);
+			listOfInts.Add(5);
+			secondListOfInts.Add(2);
+			secondListOfInts.Add(4);
+			secondListOfInts.Add(6);
+			CustomList<int> result;
+			CustomList<int> expected = new CustomList<int>();
+			//act
+			result = listOfInts + secondListOfInts;
+			//assert
+			Assert.AreEqual(expected, result);
+		}
+
+		// - OPERATOR TESTS
+
+		// ITERATOR TESTS
+		[TestMethod]
+		public void IEnumerable_ForEachElement_AddToSum()
+		{
+			//arrange
+			CustomList<int> listOfInts = new CustomList<int>();
+			int expected = 9;
+			listOfInts.Add(3);
+			listOfInts.Add(3);
+			listOfInts.Add(3);
+			int actual = 0;
+			//act
+			foreach  (int item in listOfInts)
+			{
+				actual += item;
+			}
+			//assert
+			Assert.AreEqual(expected, actual);
+		}
+		[TestMethod]
+		public void IEnumerable_ElementsAddedDuringInstantiation_GetCount()
+		{
+			//arrange
+			int expected = 5;
+			//act
+			CustomList<int> listOfInts = new CustomList<int>() { 0, 1, 2, 3, 4 };
+
+			//assert
+			Assert.AreEqual(expected, listOfInts.Count);
+		}
+		[TestMethod]
+		public void IEnumerable_ElementsAddedDuringInstantiation_GetElementAtIndex()
+		{
+			//arrange
+			int expected = 2;
+			//act
+			CustomList<int> listOfInts = new CustomList<int>() { 0, 1, 2, 3, 4 };
+
+			//assert
+			Assert.AreEqual(expected, listOfInts[2]);
+		}
+		[TestMethod]
+		public void IEnumerable_ElementsAddedToListOfStrings_GetElementAtIndex()
+		{
+			//arrange
+
+			string expected = "custom";
+			//act
+			CustomList<string> listOfInts = new CustomList<string>() { "I", "am", "a", "custom", "list" };
+
+			//assert
+			Assert.AreEqual(expected, listOfInts[3]);
+		}
+		[TestMethod]
+		public void IEnumerable_ForEachElement_AddANumber()
+		{
+			//arrange
+			CustomList<int> listOfInts = new CustomList<int>() { 0, 1, 2, 3, 4, 5 };
+			string expected = "found it";
+			CustomList<string> actual = new CustomList<string>();
+			//act
+
+			foreach (int item in listOfInts)
+			{
+				if (item == 2)
+				{
+					actual.Add("found it");
+					
+				}
+			}
+			//
+			Assert.AreEqual(expected, actual[0]);
+
+		}
 
 	}
 }

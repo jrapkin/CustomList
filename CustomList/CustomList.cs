@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,20 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-	public class CustomList<T>
+	public class CustomList<T> :IEnumerable
 	{
 		//member variables
 		private int count;
 		private int arrayCapacity;
 		
 		private T[] arrayOfData;
+		public IEnumerator GetEnumerator()
+		{
+			for (int index = 0; index < count; index++)
+			{
+				yield return arrayOfData[index];
+			}
+		}
 		public T this[int index]
 		{
 			get
@@ -135,12 +143,18 @@ namespace CustomList
 
 			for (int i = 0; i < count; i++)
 			{
-				newString.Append(arrayOfData[i]);
+				newString.Append(arrayOfData[i] + " ");
 			}
 			
 			return newString.ToString();
 		}
 
+
+		public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
+		{
+			CustomList<T> product = new CustomList<T>();
+			return product;
+		}
 
 	}
 
