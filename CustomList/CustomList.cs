@@ -17,104 +17,72 @@ namespace CustomList
 		public IEnumerator GetEnumerator()
 		{
 			for (int index = 0; index < count; index++)
-			{
-				yield return arrayOfData[index];
-			}
+			{ yield return arrayOfData[index]; }
 		}
 		public T this[int index]
 		{
 			get
 			{
 				if (index >= count) { throw new ArgumentOutOfRangeException(); }
-
-
-
 				else { return arrayOfData[index]; }
 			}
 			set
 			{
 				if (index >= count)
-				{
-					throw new ArgumentOutOfRangeException();
-				}
+				{ throw new ArgumentOutOfRangeException(); }
 				else
-				{
-					arrayOfData[index] = value;
-				}
+				{ arrayOfData[index] = value; }
 			}
 		}
 		
-		public int Length { get { return count; } }
 		public int Count { get { return count; } }
-		public int Capacity
-		{
-			get
-			{
-				return arrayCapacity;
-			}
-
-		}
+		public int Capacity { get { return arrayCapacity; } }
 		//ctor
 		public CustomList()
 		{
 			count = 0;
 			arrayCapacity = 4;
 			arrayOfData = new T[arrayCapacity];
-
 		}
-
 		//member methods
+
+		/// <summary>
+		/// Adds an item to the collection in <typeparamref name=" CustomList"/> 
+		/// </summary>
+		/// <param name="element">
+		/// A parameter must be passed in, but the parameter can be of any type. This method does not have a return type.
+		/// </param>
 		public void Add(T element)
 		{
-
-			if (IsOverCapacity() == true)
-			{
-				UpdateArray();
-				AddItemToArray(element);
-				IncrementCount();
-			}
-			else
-			{
-				AddItemToArray(element);
-				IncrementCount();
-			}
-
+			if (IsOverCapacity() == true) 
+			{ UpdateArray(); AddItemToArray(element); IncrementCount(); }
+			else { AddItemToArray(element); IncrementCount(); }
 		}
-		//ADD METHOD FUNCTIONALITY
 		private bool IsOverCapacity()
 		{
-			if (count >= arrayCapacity)
-			{ return true; }
-			else
-			{ return false; }
+			if ( count >= arrayCapacity ) { return true; }
+			else { return false; }
 		}
 		private void UpdateArray()
 		{
-
 			T[] temporaryArray = new T[arrayCapacity * 2];
-			for (int i = 0; i < arrayCapacity; i++)
-			{
-				temporaryArray[i] = arrayOfData[i];
-			}
+			for ( int i = 0; i < arrayCapacity; i++ )
+			{ temporaryArray[i] = arrayOfData[i]; }
 			arrayOfData = temporaryArray;
 			arrayCapacity *= 2;
 		}
-
 		private void AddItemToArray(T element)
-		{
-			arrayOfData[count] = element;
-		}
+		{ arrayOfData[count] = element; }
 		private void IncrementCount()
-		{
-			count++;
-		}
+		{ count++; }
 
 		//REMOVE METHOD FUNCTIONALITY
-
+		/// <summary>
+		/// Removes an item from the collection in <typeparamref name=" CustomList"/>.
+		/// </summary>
+		/// <param name="elementToRemove"></param>
 		public void Remove(T elementToRemove)
-		{
-			UpdateArray(elementToRemove);
-		}
+		{ UpdateArray(elementToRemove); }
 		private void UpdateArray(T assignedElement)
 		{
 			T[] temporaryArray = new T[arrayCapacity];
@@ -146,22 +114,29 @@ namespace CustomList
 
 			return newString.ToString();
 		}
-
+		/// <summary>
+		/// Operator overload for adding two list objects together. The parameters required are of Type CustomList<typeparamref name=" T"/>
+		/// </summary>
+		/// <param name="firstList"></param>
+		/// <param name="secondList"></param>
+		/// <returns> 
+		/// returns a new list containing the elements of two custom lists.
+		/// </returns>
 		public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
 		{
 			CustomList<T> resultOfAddedLists = new CustomList<T>();
-
-			foreach (T item in firstList)
-			{
-				resultOfAddedLists.Add(item);
-
-			}
-			foreach (T item in secondList)
-			{
-				resultOfAddedLists.Add(item);
-			}
+			foreach (T item in firstList) { resultOfAddedLists.Add(item); }
+			foreach (T item in secondList) { resultOfAddedLists.Add(item); }
 			return resultOfAddedLists;
 		}
+		/// <summary>
+		/// Operator overload for removing the values of one list object from the other. When called, this method will remove all instances of an element in the first list object that are found in the second list object.
+		/// Once removed the method will return the first list without matching elements.
+		/// The parameters required for are of Type CustomList<typeparamref name=" T"/>
+		/// </summary>
+		/// <param name="firstList"></param>
+		/// <param name="secondList"></param>
+		/// <returns></returns>
 		public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
 		{
 			foreach (T item in firstList)
@@ -183,18 +158,9 @@ namespace CustomList
 			int temporaryCount = Math.Max(count, secondList.Count);
 
 			for (int i = 0,j = 0; i < temporaryCount; i++, j++)
-			{			
-							
-				if (i < count)
-				{
-					zippedList.Add(arrayOfData[i]);
-
-				}
-				if (i < secondList.count)
-				{
-					zippedList.Add(secondList[i]);
-				}
-				
+			{ 
+			if (i < count) { zippedList.Add(arrayOfData[i]); } 
+			if (i < secondList.count) { zippedList.Add(secondList[i]); } 
 			}
 			return zippedList;
 		}
