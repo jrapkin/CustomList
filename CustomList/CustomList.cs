@@ -177,6 +177,11 @@ namespace CustomList
 		return firstList;
 		}
 		
+		public CustomList<T> Zipper(CustomList<T> firstList, CustomList<T> secondList)
+		{
+
+			return ;
+		}
 	}
 
 

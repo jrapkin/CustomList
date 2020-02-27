@@ -22,12 +22,8 @@ namespace CustomListTestCases
 
 
 		}
-		//Tests to make sure that the returned default value of the array is of the correct data type
-
 
 		//ADD METHOD TESTS
-
-		//Tests to make sure that the list is incrementing the count as new elements get added to the list
 		[TestMethod]
 		public void Add_OneValue_IncrementCountOfList()
 		{
@@ -40,7 +36,6 @@ namespace CustomListTestCases
 			//assert
 			Assert.AreEqual(expected, aCustomList.Count);
 		}
-		//Tests to make sure that the index of the element added is correct when one value is added to the list
 		[TestMethod]
 		public void Add_OneValue_ReturnValueAtIndex()
 		{
@@ -54,7 +49,6 @@ namespace CustomListTestCases
 			//assert
 			Assert.AreEqual(expected, aCustomList[0]);
 		}
-		//Tests to make sure that the index of the element in index position two is correct when multiple elements are added to the list
 		[TestMethod]
 		public void Add_TwoValues_ReturnElementAtIndex()
 		{
@@ -71,7 +65,6 @@ namespace CustomListTestCases
 			//Assert
 			Assert.AreEqual(expected, aCustomList[1]);
 		}
-		//Tests to make sure that the index of the element in index position two is correct when multiple elements are added to the list
 		[TestMethod]
 		public void Add_ThreeValues_CheckCapacityIsFour()
 		{
@@ -242,7 +235,6 @@ namespace CustomListTestCases
 			Assert.AreEqual(expected, aCustomList.Count);
 		}
 
-
 		//.TOSTRING TESTS
 		[TestMethod]
 		public void ToString_ConvertOneElement_OutputString()
@@ -271,7 +263,6 @@ namespace CustomListTestCases
 			//assert
 			Assert.AreEqual(expected, actual);
 		}
-
 		[TestMethod]
 		public void ToString_ConvertTwoStrings_OutputStrings()
 		{
@@ -286,7 +277,6 @@ namespace CustomListTestCases
 			//assert
 			Assert.AreEqual(expected, actual);
 		}
-
 		[TestMethod]
 		public void ToString_ConvertThreeElementsInListOfDoubles_OutputString()
 		{
@@ -302,7 +292,6 @@ namespace CustomListTestCases
 			//assert
 			Assert.AreEqual(expected, actual);
 		}
-
 		[TestMethod]
 		public void ToString_ConvertADoubleElement_OutputString()
 		{
@@ -318,7 +307,6 @@ namespace CustomListTestCases
 		}
 
 		//+ OPERATOR TESTS
-
 		[TestMethod]
 		public void OperatorOverload_AddTwoLists_ReturnCombinedLists()
 		{
@@ -342,7 +330,7 @@ namespace CustomListTestCases
 		public void OperatorOverload_AddTwoLists_ReturnCount()
 		{
 			//arrange
-			CustomList<int> listOfInts = new CustomList<int>(){1, 3, 5};
+			CustomList<int> listOfInts = new CustomList<int>() { 1, 3, 5 };
 			CustomList<int> secondListOfInts = new CustomList<int>() { 2, 4, 6 };
 
 			CustomList<int> result;
@@ -364,7 +352,7 @@ namespace CustomListTestCases
 			secondListOfStrings.Add("four");
 			secondListOfStrings.Add("six");
 			CustomList<string> result;
-			CustomList<string> expected = new CustomList<string>(){ "one", "three", "five", "two", "four", "six" };
+			CustomList<string> expected = new CustomList<string>() { "one", "three", "five", "two", "four", "six" };
 			//act
 			result = listOfStrings + secondListOfStrings;
 			//assert
@@ -373,7 +361,7 @@ namespace CustomListTestCases
 		[TestMethod]
 		public void OperatorOverload_AddTwoListOfInts_Capacity()
 		{
-			CustomList<int> listOfStrings = new CustomList<int>(){ 1, 3, 5 };
+			CustomList<int> listOfStrings = new CustomList<int>() { 1, 3, 5 };
 			CustomList<int> secondListOfStrings = new CustomList<int>() { 2, 4, 6 };
 			CustomList<int> result;
 			CustomList<int> expected = new CustomList<int>() { 1, 3, 5, 2, 4, 6 };
@@ -391,7 +379,7 @@ namespace CustomListTestCases
 			CustomList<int> secondListOfInts = new CustomList<int>() { 2, 3, 6 };
 
 			CustomList<int> result;
-			CustomList<int> expected = new CustomList<int>() { 1, 5};
+			CustomList<int> expected = new CustomList<int>() { 1, 5 };
 			//act
 			result = listOfInts - secondListOfInts;
 			//assert
@@ -415,7 +403,7 @@ namespace CustomListTestCases
 			CustomList<int> listOfStrings = new CustomList<int>() { 1, 3, 5 };
 			CustomList<int> secondListOfStrings = new CustomList<int>() { 2, 3, 6 };
 			CustomList<int> result;
-			CustomList<int> expected = new CustomList<int>() { 1, 5};
+			CustomList<int> expected = new CustomList<int>() { 1, 5 };
 			//act
 			result = listOfStrings - secondListOfStrings;
 			//assert
@@ -427,7 +415,7 @@ namespace CustomListTestCases
 			CustomList<int> listOfStrings = new CustomList<int>() { 1, 3, 5 };
 			CustomList<int> secondListOfStrings = new CustomList<int>() { 2, 4, 6 };
 			CustomList<int> result;
-			CustomList<int> expected = new CustomList<int>() { 1, 3, 5};
+			CustomList<int> expected = new CustomList<int>() { 1, 3, 5 };
 			//act
 			result = listOfStrings - secondListOfStrings;
 			//assert
@@ -445,7 +433,7 @@ namespace CustomListTestCases
 			listOfInts.Add(3);
 			int actual = 0;
 			//act
-			foreach  (int item in listOfInts)
+			foreach (int item in listOfInts)
 			{
 				actual += item;
 			}
@@ -500,12 +488,66 @@ namespace CustomListTestCases
 				if (item == 2)
 				{
 					actual.Add("found it");
-					
+
 				}
 			}
 			//
 			Assert.AreEqual(expected, actual[0]);
 
+		}
+
+		//ZIPPER TESTS
+		[TestMethod]
+		public void Zipper_AddTwoListOfInts_ReturnZipperedListOfInts()
+		{
+			//arrange
+			CustomList<int> firstList = new CustomList<int>(){1, 3, 5};
+			CustomList<int> secondList = new CustomList<int>(){2, 4, 6};
+			CustomList<int> expected = new CustomList<int>() { 1, 2, 3, 4, 5, 6 };
+			CustomList<int> actual = new CustomList<int>();
+			//act
+			actual.Zipper(firstList, secondList);
+			//assert
+			Assert.AreEqual(expected, actual);
+		}
+		[TestMethod]
+		public void Zipper_AddTwoListOfInts_ReturnCount()
+		{
+			//arrange
+			CustomList<int> firstList = new CustomList<int>() { 1, 3, 5 };
+			CustomList<int> secondList = new CustomList<int>() { 2, 4, 6 };
+			CustomList<int> expected = new CustomList<int>() { 1, 2, 3, 4, 5, 6 };
+			CustomList<int> actual = new CustomList<int>();
+			//act
+			actual.Zipper(firstList, secondList);
+			//assert
+			Assert.AreEqual(expected.Count, actual.Count);
+		}
+		[TestMethod]
+		public void Zipper_AddTwoListOfStrings_ReturnZipperedListOfStrings()
+		{
+			//arrange
+			CustomList<string> firstList = new CustomList<string>() { "one", "three", "five"};
+			CustomList<string> secondList = new CustomList<string>() { "two", "four", "six" };
+			CustomList<string> expected = new CustomList<string>() { "one", "two", "three", "four", "five", "six" };
+			CustomList<string> actual = new CustomList<string>();
+			//act
+			actual.Zipper(firstList, secondList);
+			//assert
+			Assert.AreEqual(expected.ToString(), actual.ToString());
+		}
+		[TestMethod]
+		public void Zipper_AddTwoListOfInts_ReturnCapacity()
+		{
+			//arrange
+			CustomList<int> firstList = new CustomList<int>() { 1, 3, 5 };
+			CustomList<int> secondList = new CustomList<int>() { 2, 4, 6 };
+			CustomList<int> expected = new CustomList<int>() { 1, 2, 3, 4, 5, 6 };
+			CustomList<int> actual = new CustomList<int>();
+			//act
+			actual.Zipper(firstList, secondList);
+			//assert
+			Assert.AreEqual(expected.Capacity, actual.Capacity);
 		}
 
 	}
