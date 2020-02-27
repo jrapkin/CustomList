@@ -44,7 +44,6 @@ namespace CustomList
 			}
 		}
 			
-		
 		public int Length { get { return count; } }
 		public int Count { get { return count; } }
 		public int Capacity
@@ -140,20 +139,28 @@ namespace CustomList
 		public override string ToString()
 		{
 			StringBuilder newString = new StringBuilder();
-
 			for (int i = 0; i < count; i++)
 			{
-				newString.Append(arrayOfData[i] + " ");
+				newString.Append(arrayOfData[i]);
 			}
 			
 			return newString.ToString();
 		}
 
-
 		public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
 		{
-			CustomList<T> product = new CustomList<T>();
-			return product;
+			CustomList<T> resultOfAddedLists = new CustomList<T>();
+
+			foreach (T item in firstList)
+			{
+				resultOfAddedLists.Add(item);
+
+			}
+			foreach (T item in secondList)
+			{
+				resultOfAddedLists.Add(item);
+			}
+			return resultOfAddedLists;
 		}
 
 	}
