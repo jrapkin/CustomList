@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-	public class CustomList<T> :IEnumerable
+	public class CustomList<T> : IEnumerable
 	{
 		//member variables
 		private int count;
 		private int arrayCapacity;
-		
+
 		private T[] arrayOfData;
 		public IEnumerator GetEnumerator()
 		{
@@ -43,14 +43,14 @@ namespace CustomList
 				}
 			}
 		}
-			
+
 		public int Length { get { return count; } }
 		public int Count { get { return count; } }
 		public int Capacity
 		{
-			get 
-			{ 
-				return arrayCapacity; 
+			get
+			{
+				return arrayCapacity;
 			}
 
 		}
@@ -60,7 +60,7 @@ namespace CustomList
 			count = 0;
 			arrayCapacity = 4;
 			arrayOfData = new T[arrayCapacity];
-			
+
 		}
 
 		//member methods
@@ -120,7 +120,7 @@ namespace CustomList
 			T[] temporaryArray = new T[arrayCapacity];
 			int temporaryCount = count;
 			bool removed = false;
-			for (int i = 0,j=0; i < temporaryCount; i++,j++)
+			for (int i = 0, j = 0; i < temporaryCount; i++, j++)
 			{
 				if (assignedElement.Equals(arrayOfData[i]) && !removed)
 				{
@@ -143,7 +143,7 @@ namespace CustomList
 			{
 				newString.Append(arrayOfData[i]);
 			}
-			
+
 			return newString.ToString();
 		}
 
@@ -162,7 +162,21 @@ namespace CustomList
 			}
 			return resultOfAddedLists;
 		}
-
+		public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
+		{
+			foreach (T item in firstList)
+			{
+				for (int i = 0; i < secondList.count; i++)
+				{
+					if (item.Equals(secondList[i]))
+					{
+						firstList.Remove(item);
+					}
+				}
+			}
+		return firstList;
+		}
+		
 	}
 
 

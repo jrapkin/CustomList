@@ -383,7 +383,56 @@ namespace CustomListTestCases
 			Assert.AreEqual(expected.Capacity, result.Capacity);
 		}
 		// - OPERATOR TESTS
+		[TestMethod]
+		public void OperatorOverload_SubtractFromTwoListOfInts_ReturnCount()
+		{
+			//arrange
+			CustomList<int> listOfInts = new CustomList<int>() { 1, 3, 5 };
+			CustomList<int> secondListOfInts = new CustomList<int>() { 2, 3, 6 };
 
+			CustomList<int> result;
+			CustomList<int> expected = new CustomList<int>() { 1, 5};
+			//act
+			result = listOfInts - secondListOfInts;
+			//assert
+			Assert.AreEqual(expected.Count, result.Count);
+		}
+		[TestMethod]
+		public void OperatorOverload_SubtractFromTwoListOfInts_Capacity()
+		{
+			CustomList<int> listOfStrings = new CustomList<int>() { 1, 3, 5 };
+			CustomList<int> secondListOfStrings = new CustomList<int>() { 2, 3, 6 };
+			CustomList<int> result;
+			CustomList<int> expected = new CustomList<int>() { 1, 5 };
+			//act
+			result = listOfStrings - secondListOfStrings;
+			//assert
+			Assert.AreEqual(expected.Capacity, result.Capacity);
+		}
+		[TestMethod]
+		public void OperatorOverload_SubtractFromTwoListOfInts_ReturnResultingList()
+		{
+			CustomList<int> listOfStrings = new CustomList<int>() { 1, 3, 5 };
+			CustomList<int> secondListOfStrings = new CustomList<int>() { 2, 3, 6 };
+			CustomList<int> result;
+			CustomList<int> expected = new CustomList<int>() { 1, 5};
+			//act
+			result = listOfStrings - secondListOfStrings;
+			//assert
+			Assert.AreEqual(expected.ToString(), result.ToString());
+		}
+		[TestMethod]
+		public void OperatorOverload_SubtractFromTwoListOfInts_ReturnResultingListWithNoChange()
+		{
+			CustomList<int> listOfStrings = new CustomList<int>() { 1, 3, 5 };
+			CustomList<int> secondListOfStrings = new CustomList<int>() { 2, 4, 6 };
+			CustomList<int> result;
+			CustomList<int> expected = new CustomList<int>() { 1, 3, 5};
+			//act
+			result = listOfStrings - secondListOfStrings;
+			//assert
+			Assert.AreEqual(expected.ToString(), result.ToString());
+		}
 		// ITERATOR TESTS
 		[TestMethod]
 		public void IEnumerable_ForEachElement_AddToSum()
