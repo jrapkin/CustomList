@@ -43,7 +43,7 @@ namespace CustomList
 				}
 			}
 		}
-
+		
 		public int Length { get { return count; } }
 		public int Count { get { return count; } }
 		public int Capacity
@@ -177,12 +177,26 @@ namespace CustomList
 		return firstList;
 		}
 		
-		public CustomList<T> Zipper(CustomList<T> firstList, CustomList<T> secondList)
-		{
+		public CustomList<T> Zipper(CustomList<T> secondList)
+		{ 
+			CustomList<T> zippedList = new CustomList<T>();
+			int temporaryCount = Math.Max(count, secondList.Count);
 
-			return ;
+			for (int i = 0,j = 0; i < temporaryCount; i++, j++)
+			{			
+							
+				if (i < count)
+				{
+					zippedList.Add(arrayOfData[i]);
+
+				}
+				if (i < secondList.count)
+				{
+					zippedList.Add(secondList[i]);
+				}
+				
+			}
+			return zippedList;
 		}
 	}
-
-
 }

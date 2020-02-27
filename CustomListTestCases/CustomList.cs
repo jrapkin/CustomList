@@ -501,14 +501,26 @@ namespace CustomListTestCases
 		public void Zipper_AddTwoListOfInts_ReturnZipperedListOfInts()
 		{
 			//arrange
-			CustomList<int> firstList = new CustomList<int>(){1, 3, 5};
+			CustomList<int> firstList = new CustomList<int>(){1, 3, 5, 7};
 			CustomList<int> secondList = new CustomList<int>(){2, 4, 6};
-			CustomList<int> expected = new CustomList<int>() { 1, 2, 3, 4, 5, 6 };
+			CustomList<int> expected = new CustomList<int>() { 1, 2, 3, 4, 5, 6, 7};
 			CustomList<int> actual = new CustomList<int>();
 			//act
-			actual.Zipper(firstList, secondList);
+			actual = firstList.Zipper(secondList);
 			//assert
-			Assert.AreEqual(expected, actual);
+			Assert.AreEqual(expected.ToString(), actual.ToString());
+		}
+		public void Zipper_AddTwoDifferentSizeListOfInts_ReturnZipperedListOfInts()
+		{
+			//arrange
+			CustomList<int> firstList = new CustomList<int>() { 1, 3, 5, 7 };
+			CustomList<int> secondList = new CustomList<int>() { 2, 4, 6, 8, 10 };
+			CustomList<int> expected = new CustomList<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 10};
+			CustomList<int> actual = new CustomList<int>();
+			//act
+			actual = firstList.Zipper(secondList);
+			//assert
+			Assert.AreEqual(expected.ToString(), actual.ToString());
 		}
 		[TestMethod]
 		public void Zipper_AddTwoListOfInts_ReturnCount()
@@ -519,7 +531,7 @@ namespace CustomListTestCases
 			CustomList<int> expected = new CustomList<int>() { 1, 2, 3, 4, 5, 6 };
 			CustomList<int> actual = new CustomList<int>();
 			//act
-			actual.Zipper(firstList, secondList);
+			actual = firstList.Zipper(secondList);
 			//assert
 			Assert.AreEqual(expected.Count, actual.Count);
 		}
@@ -532,7 +544,7 @@ namespace CustomListTestCases
 			CustomList<string> expected = new CustomList<string>() { "one", "two", "three", "four", "five", "six" };
 			CustomList<string> actual = new CustomList<string>();
 			//act
-			actual.Zipper(firstList, secondList);
+			actual = firstList.Zipper(secondList);
 			//assert
 			Assert.AreEqual(expected.ToString(), actual.ToString());
 		}
@@ -545,7 +557,7 @@ namespace CustomListTestCases
 			CustomList<int> expected = new CustomList<int>() { 1, 2, 3, 4, 5, 6 };
 			CustomList<int> actual = new CustomList<int>();
 			//act
-			actual.Zipper(firstList, secondList);
+			actual = firstList.Zipper(secondList);
 			//assert
 			Assert.AreEqual(expected.Capacity, actual.Capacity);
 		}
