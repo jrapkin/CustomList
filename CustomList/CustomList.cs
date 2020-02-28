@@ -12,7 +12,6 @@ namespace CustomList
 		//member variables
 		private int count;
 		private int arrayCapacity;
-
 		private T[] arrayOfData;
 		public IEnumerator GetEnumerator()
 		{
@@ -23,28 +22,48 @@ namespace CustomList
 		{
 			get
 			{
-				if (index >= count) { throw new ArgumentOutOfRangeException(); }
-				else { return arrayOfData[index]; }
+				if (index >= count) 
+				{ 
+					throw new ArgumentOutOfRangeException();
+				}
+				else 
+				{ 
+					return arrayOfData[index];
+				}
 			}
 			set
 			{
 				if (index >= count)
-				{ throw new ArgumentOutOfRangeException(); }
+				{ 
+					throw new ArgumentOutOfRangeException(); 
+				}
 				else
-				{ arrayOfData[index] = value; }
+				{ 
+					arrayOfData[index] = value;
+				}
 			}
 		}
-		
-		public int Count { get { return count; } }
-		public int Capacity { get { return arrayCapacity; } }
-		//ctor
+		public int Count 
+		{ 
+			get 
+			{ 
+				return count; 
+			} 
+		}
+		public int Capacity 
+		{ 
+			get 
+			{ 
+				return arrayCapacity; 
+			} 
+		}
 		public CustomList()
 		{
 			count = 0;
 			arrayCapacity = 4;
 			arrayOfData = new T[arrayCapacity];
 		}
-		//member methods
+
 
 		/// <summary>
 		/// Adds an item to the collection in <typeparamref name=" CustomList"/> 
@@ -55,26 +74,46 @@ namespace CustomList
 		public void Add(T element)
 		{
 			if (IsOverCapacity() == true) 
-			{ UpdateArray(); AddItemToArray(element); IncrementCount(); }
-			else { AddItemToArray(element); IncrementCount(); }
+			{ 
+				UpdateArray(); 
+				AddItemToArray(element); 
+				IncrementCount(); 
+			}
+			else 
+			{ 
+				AddItemToArray(element); 
+				IncrementCount(); 
+			}
 		}
 		private bool IsOverCapacity()
 		{
-			if ( count >= arrayCapacity ) { return true; }
-			else { return false; }
+			if ( count >= arrayCapacity ) 
+			{ 
+				return true; 
+			}
+			else 
+			{ 
+				return false; 
+			}
 		}
 		private void UpdateArray()
 		{
 			T[] temporaryArray = new T[arrayCapacity * 2];
 			for ( int i = 0; i < arrayCapacity; i++ )
-			{ temporaryArray[i] = arrayOfData[i]; }
+			{ 
+				temporaryArray[i] = arrayOfData[i];
+			}
 			arrayOfData = temporaryArray;
 			arrayCapacity *= 2;
 		}
 		private void AddItemToArray(T element)
-		{ arrayOfData[count] = element; }
+		{ 
+			arrayOfData[count] = element; 
+		}
 		private void IncrementCount()
-		{ count++; }
+		{ 
+			count++;
+		}
 
 		//REMOVE METHOD FUNCTIONALITY
 		/// <summary>
@@ -82,7 +121,9 @@ namespace CustomList
 		/// </summary>
 		/// <param name="elementToRemove"></param>
 		public void Remove(T elementToRemove)
-		{ UpdateArray(elementToRemove); }
+		{ 
+			UpdateArray(elementToRemove);
+		}
 		private void UpdateArray(T assignedElement)
 		{
 			T[] temporaryArray = new T[arrayCapacity];
@@ -125,18 +166,26 @@ namespace CustomList
 		public static CustomList<T> operator +(CustomList<T> firstList, CustomList<T> secondList)
 		{
 			CustomList<T> resultOfAddedLists = new CustomList<T>();
-			foreach (T item in firstList) { resultOfAddedLists.Add(item); }
-			foreach (T item in secondList) { resultOfAddedLists.Add(item); }
+			foreach (T item in firstList)
+			{ 
+				resultOfAddedLists.Add(item);
+			}
+			foreach (T item in secondList) 
+			{ 
+				resultOfAddedLists.Add(item);
+			}
 			return resultOfAddedLists;
 		}
 		/// <summary>
 		/// Operator overload for removing the values of one list object from the other. When called, this method will remove all instances of an element in the first list object that are found in the second list object.
 		/// Once removed the method will return the first list without matching elements.
-		/// The parameters required for are of Type CustomList<typeparamref name=" T"/>
 		/// </summary>
 		/// <param name="firstList"></param>
 		/// <param name="secondList"></param>
-		/// <returns></returns>
+		/// <returns>
+		/// The sum of two CustomList objects.
+		/// </returns>
+
 		public static CustomList<T> operator -(CustomList<T> firstList, CustomList<T> secondList)
 		{
 			foreach (T item in firstList)
@@ -159,8 +208,14 @@ namespace CustomList
 
 			for (int i = 0,j = 0; i < temporaryCount; i++, j++)
 			{ 
-			if (i < count) { zippedList.Add(arrayOfData[i]); } 
-			if (i < secondList.count) { zippedList.Add(secondList[i]); } 
+				if (i < count)
+				{ 
+					zippedList.Add(arrayOfData[i]); 
+				} 
+				if (i < secondList.count) 
+				{ 
+					zippedList.Add(secondList[i]);
+				} 
 			}
 			return zippedList;
 		}
